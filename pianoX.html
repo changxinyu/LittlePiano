@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Piano</title>
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            touch-action: manipulation;
+
+        }
+
+        body {
+            background-color: rgb(105, 109, 144);
+            height: 90vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand {
+            font-size: 2em;
+            position: absolute;
+            transform: translateY(4vh) translateX(4vw);
+            color: rgb(128, 128, 128);
+            text-shadow: 0px 1px 0px rgb(45, 45, 45);
+        }
+
+        .slogon {
+            transform: translateY(7vh);
+            font-size: 0.5em;
+            transform: translateY(-120%) translateX(400%);
+            position: absolute;
+            color: rgb(91, 91, 91);
+        }
+
+        .wrap {
+            background: linear-gradient(0deg, rgb(37, 37, 37) 0%, rgb(20, 20, 20) 100%);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            height: 70vh;
+            min-height: 300px;
+            width: 95vw;
+            border-radius: 20px;
+            padding-top: 40px;
+        }
+
+        .blackkey {
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.3);
+            position: absolute;
+            transform: translateX(4.3vw);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: end;
+            padding-bottom: 20px;
+            width: 4vw;
+            max-height: 50vh;
+            min-height: 150px;
+            height: 30vh;
+            background: black;
+            border-radius: 0 0 6px 6px;
+            display: -webkit-box;
+            -webkit-box-pack: center;
+            /* justify-content */
+            -webkit-box-align: end;
+            /* align-items */
+        }
+
+        .whitekey {
+            font-size: 1.2em;
+            color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: end;
+            padding-bottom: 20px;
+            width: 6vw;
+            height: 50vh;
+            max-height: 80vh;
+            min-height: 220px;
+            background: #ffffff;
+            border: 1px solid rgb(36, 36, 36);
+            border-radius: 0 0 6px 6px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+            display: -webkit-box;
+            -webkit-box-pack: center;
+            /* justify-content */
+            -webkit-box-align: end;
+            /* align-items */
+        }
+    </style>
+
+    <div class="container">
+
+        <div class="brand">Little Piano V2 <div class="slogon">for Yelu</div></div>
+
+        <div class="wrap">
+            <div class="group">
+                <div class="blackkey">1</div>
+                <div class="whitekey">Z</div>
+            </div>
+            <div class="group">
+                <div class="blackkey">2</div>
+                <div class="whitekey">X</div>
+            </div>
+            <div class="group">
+                <div class="blackkey">3</div>
+                <div class="whitekey">C</div>
+            </div>
+            <div class="group">
+                <div class="whitekey">V</div>
+            </div>
+            <div class="group">
+                <div class="blackkey">W</div>
+                <div class="whitekey">A</div>
+            </div>
+            <div class="group">
+                <div class="blackkey">E</div>
+                <div class="whitekey">S</div>
+            </div>
+            <div class="group">
+                <div class="whitekey">D</div>
+            </div>
+            <div class="group">
+                <div class="blackkey">T</div>
+                <div class="whitekey">F</div>
+            </div>
+            <div class="group">
+                <div class="blackkey">Y</div>
+                <div class="whitekey">G</div>
+            </div>
+            <div class="group">
+                <div class="blackkey">U</div>
+                <div class="whitekey">H</div>
+            </div>
+            <div class="group">
+                <div class="whitekey">J</div>
+            </div>
+            <div class="group">
+                <div class="blackkey">O</div>
+                <div class="whitekey">K</div>
+            </div>
+            <div class="group">
+                <div class="blackkey">P</div>
+                <div class="whitekey">L</div>
+            </div>
+            <div class="group">
+                <div class="whitekey">;</div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="howler/src/dist/howler.js"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="mobile-detect.js-master/mobile-detect.js"></script>
+
+    <script>
+        var md = new MobileDetect(window.navigator.userAgent);
+        var sound = {
+            bfa: new Howl({
+                src: ['C2/F.mp3'],
+                loop: false,
+            }),
+            brfa: new Howl({
+                src: ['C2/FF.mp3'],
+                loop: false,
+            }),
+            bso: new Howl({
+                src: ['C2/G.mp3'],
+                loop: false,
+            }),
+            brso: new Howl({
+                src: ['C2/GG.mp3'],
+                loop: false,
+            }),
+            bla: new Howl({
+                src: ['C2/A.mp3'],
+                loop: false,
+            }),
+            brla: new Howl({
+                src: ['C2/AA.mp3'],
+                loop: false,
+            }),
+            bti: new Howl({
+                src: ['C2/B.mp3'],
+                loop: false,
+            }),
+            brti: new Howl({
+                src: ['C3/CC.mp3'],
+                loop: false,
+            }),
+            bto: new Howl({
+                src: ['C2/B.mp3'],
+                loop: false,
+            }),
+            do: new Howl({
+                src: ['C3/C.mp3'],
+                loop: false,
+            }),
+            rdo: new Howl({
+                src: ['C3/CC.mp3'],
+                loop: false,
+            }),
+            re: new Howl({
+                src: ['C3/D.mp3'],
+                loop: false,
+            }),
+            rre: new Howl({
+                src: ['C3/DD.mp3'],
+                loop: false,
+            }),
+            mi: new Howl({
+                src: ['C3/E.mp3'],
+                loop: false,
+            }),
+            fa: new Howl({
+                src: ['C3/F.mp3'],
+                loop: false,
+            }),
+            rfa: new Howl({
+                src: ['C3/FF.mp3'],
+                loop: false,
+            }),
+            so: new Howl({
+                src: ['C3/G.mp3'],
+                loop: false,
+            }),
+            rso: new Howl({
+                src: ['C3/GG.mp3'],
+                loop: false,
+            }),
+            la: new Howl({
+                src: ['C3/A.mp3'],
+                loop: false,
+            }),
+            rla: new Howl({
+                src: ['C3/AA.mp3'],
+                loop: false,
+            }),
+            ti: new Howl({
+                src: ['C3/B.mp3'],
+                loop: false,
+            }),
+            to: new Howl({
+                src: ['C4/C.mp3'],
+                loop: false,
+            }),
+            cdo: new Howl({
+                src: ['C4/C.mp3'],
+                loop: false,
+
+            }),
+            crdo: new Howl({
+                src: ['C4/CC.mp3'],
+                loop: false,
+
+            }),
+            cre: new Howl({
+                src: ['C4/D.mp3'],
+                loop: false,
+
+            }),
+            crre: new Howl({
+                src: ['C4/DD.mp3'],
+                loop: false,
+
+            }),
+            cmi: new Howl({
+                src: ['C4/E.mp3'],
+                loop: false,
+
+            }),
+        }
+
+        window.onload = function (event) {
+            var black = [sound.brfa, sound.brso, sound.brla, sound.rdo, sound.rre, sound.rfa, sound.rso, sound.rla, sound.crdo, sound.crre];
+            var piano = [sound.bfa, sound.bso, sound.bla, sound.bti, sound.do, sound.re, sound.mi, sound.fa, sound.so, sound.la, sound.ti, sound.cdo, sound.cre, sound.cmi];
+            var letter = ['Z', 'X', 'C', 'V', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';']
+            var key = [90, 88, 67, 86, 65, 83, 68, 70, 71, 72, 74, 75, 76, 186]
+            var upper = ['1', '2', '3', 'W', 'E', 'T', 'Y', 'U', 'O', 'P']
+            var upkey = [49, 50, 51, 87, 69, 84, 89, 85, 79, 80]
+            function keyboarddown(nn) {
+                document.getElementsByClassName('whitekey')[nn].style.cssText = 'background-color:mediumturquoise;box-shadow: 0px 0px 0px rgba(0,0,0,0);';
+                piano[nn].play()
+            }
+            function keyblackdown(mm) {
+                document.getElementsByClassName('blackkey')[mm].style.cssText = 'background-color:mediumturquoise;box-shadow: 0px 0px 0px rgba(0,0,0,0);';
+                black[mm].play()
+            }
+            function keyboardup(nn) {
+                document.getElementsByClassName('whitekey')[nn].style.cssText = 'background-color:#ffffff;box-shadow: 0px 2px 2px rgba(0,0,0,0.3);';
+            }
+            function keyblackup(mm) {
+                document.getElementsByClassName('blackkey')[mm].style.cssText = 'background-color:black;;box-shadow: 0px 2px 2px rgba(0,0,0,0.3);';
+            }
+
+            if (md.phone() !== null) {
+                document.ontouchstart = e => {
+                    nn = letter.indexOf(e.target.innerHTML)
+                    mm = upper.indexOf(e.target.innerHTML)
+                    if (e.target.getAttribute("class") == 'whitekey' || e.target.getAttribute("class") == 'blackkey') {
+                        e.target.style.cssText = 'background-color:mediumturquoise;box-shadow: 0px 2px 2px rgba(0,0,0,0);';
+                        if (nn != -1) {
+                            piano[nn].play()
+                        } else {
+                            black[mm].play()
+                        }
+                    }else{
+                        return;
+                    }
+
+                }
+
+                document.ontouchend = e => {
+                    nn = letter.indexOf(e.target.innerHTML)
+                    mm = upper.indexOf(e.target.innerHTML)
+                    console.log(nn, mm)
+                    if (nn !== -1) {
+                        e.target.style.backgroundColor = ''
+                    } else if (mm !== -1) {
+                        e.target.style.cssText = 'background-color:black;box-shadow: 0px 2px 2px rgba(0,0,0,0.3);';
+                    }else{
+                        return;
+                    }
+                }
+            } else {
+                document.onmousedown = e => {
+                    nn = letter.indexOf(e.target.innerHTML)
+                    mm = upper.indexOf(e.target.innerHTML)
+                    if (e.target.getAttribute("class") == 'whitekey' || e.target.getAttribute("class") == 'blackkey') {
+                        console.log(nn)
+                        e.target.style.cssText = 'background-color:mediumturquoise;box-shadow: 0px 2px 2px rgba(0,0,0,0);';
+                        if (nn != -1) {
+                            piano[nn].play()
+                        } else {
+                            black[mm].play()
+                        }
+                    }else{
+                        return;
+                    }
+                }
+
+                document.onmouseup = e => {
+                    if (nn !== -1) {
+                        e.target.style.cssText = 'background-color:#ffffff;box-shadow: 0px 2px 2px rgba(0,0,0,0.3);';
+                    } else if (e.target.getAttribute("class") == 'blackkey') {
+                        e.target.style.cssText = 'background-color:black;;box-shadow: 0px 2px 2px rgba(0,0,0,0.3);';
+                    }else{
+                        return;
+                    }
+
+
+                }
+            }
+            document.onkeydown = e => {
+                if (!e.repeat) {
+                    var Kletter = e.keyCode
+                    var mm = upkey.indexOf(Kletter)
+                    var nn = key.indexOf(Kletter)
+                    if (nn != -1) {
+                        keyboarddown(nn);
+                    } else if (mm != -1){
+                        keyblackdown(mm);
+                    }else{
+                        return;
+                    }
+                }
+            }
+            document.onkeyup = e => {
+                var Kletter = e.keyCode
+                var nn = key.indexOf(Kletter)
+                var mm = upkey.indexOf(Kletter)
+                if (nn != -1) {
+                    keyboardup(nn);
+                } else if(mm!=-1){
+                    keyblackup(mm);
+                }else{
+                        return;
+                    }
+            }
+
+        }
+
+    </script>
+
+    <!-- 
+    --2022.5.5 01:45 Done--
+    Thanks:
+    Yangyt
+    Zhaoli
+    supurior
+    Jox
+    Wenwei
+    -->
+
+</body>
+
+</html>
