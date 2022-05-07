@@ -1,5 +1,4 @@
 # LittlePiano
-JavaScript Piano
 This is my first JavaScript Project. Spent 10 days, iterated 2 versions
 I code this project for my daughter. She has a real little piano but doesn't interesting in it. So I try to arouse her interest. And it worked.
 I'm a UI designer and I like coding, But I'm a freshman in Javascript. I know little HTML and CSS Before this project. I think this project is a great opportunity to learn some new skills.
